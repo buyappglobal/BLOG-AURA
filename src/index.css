@@ -1,0 +1,73 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Courier New", Courier, monospace;
+  
+  --color-aura-bg: #050505;
+  --color-aura-accent: #d4af37; /* Metallic Gold */
+  --color-aura-accent-soft: rgba(212, 175, 55, 0.1);
+  --color-aura-muted: #a1a1aa;
+  --color-aura-card: #0c0c0c;
+  --color-aura-border: rgba(255, 255, 255, 0.05);
+
+  /* Category Colors */
+  --color-cat-retail: #d4af37;
+  --color-cat-hosteleria: #3b82f6;
+  --color-cat-partners: #10b981;
+  --color-cat-ecosistema: #7c3aed;
+}
+
+@layer base {
+  body {
+    @apply bg-aura-bg text-[#f4f4f5] font-sans antialiased overflow-x-hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight;
+  }
+}
+
+@layer components {
+  .aura-glow-top {
+    @apply absolute w-[800px] h-[800px] top-[-300px] right-[-200px] pointer-events-none z-0;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%);
+  }
+
+  .aura-glow-bottom {
+    @apply absolute w-[500px] h-[500px] bottom-[-200px] left-[-200px] pointer-events-none z-0;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.05) 0%, transparent 70%);
+  }
+  
+  .aura-border {
+    @apply border border-aura-border hover:border-aura-accent/30 transition-all duration-500;
+  }
+
+  .markdown-body {
+    @apply prose prose-invert max-w-none;
+    @apply text-aura-muted leading-relaxed;
+  }
+
+  .markdown-body h1 { @apply text-[#f4f4f5] text-4xl mb-8 mt-12; }
+  .markdown-body h2 { @apply text-[#f4f4f5] text-2xl mb-4 mt-8; }
+  .markdown-body p { @apply mb-6; }
+  .markdown-body li { @apply mb-2; }
+  .markdown-body strong { @apply text-white; }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #000;
+}
+::-webkit-scrollbar-thumb {
+  background: #1a1a1a;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #222;
+}
+
