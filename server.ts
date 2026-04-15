@@ -227,12 +227,12 @@ async function startServer() {
     
     app.use(vite.middlewares);
 
-    // SPA Fallback for development - MUST be the last route
-    app.get('*', async (req, res, next) => {
+    // SPA Fallback for development
+    app.use('*', async (req, res, next) => {
       const url = req.originalUrl;
-      
-      // Skip API routes and files with extensions
-      if (url.startsWith('/api') || url.includes('.')) {
+
+      // If it's a file request (has a dot) or an API call, let it pass to other middlewares
+      if (url.includes('.') || url.startsWith('/api')) {
         return next();
       }
 
