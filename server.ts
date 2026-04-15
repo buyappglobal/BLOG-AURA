@@ -225,16 +225,21 @@ async function startServer() {
       appType: "spa",
     });
     
-    // Use vite's connect instance as middleware
     app.use(vite.middlewares);
 
-    // Explicitly handle all other routes by serving index.html through Vite
-    app.use('*', async (req, res, next) => {
+    // SPA Fallback for development - MUST be the last route
+    app.get('*', async (req, res, next) => {
       const url = req.originalUrl;
+      
+      // Skip API routes and files with extensions
+      if (url.startsWith('/api') || url.includes('.')) {
+        return next();
+      }
+
       try {
         const fs = await import('fs');
-        let template = fs.readFileSync(path.join(process.cwd(), 'index.html'), 'utf-8');
-        // Transform index.html with Vite's HTML transformation
+        const indexPath = path.resolve(process.cwd(), 'index.html');
+        let template = fs.readFileSync(indexPath, 'utf-8');
         template = await vite.transformIndexHtml(url, template);
         res.status(200).set({ 'Content-Type': 'text/html' }).end(template);
       } catch (e) {
@@ -243,10 +248,12 @@ async function startServer() {
       }
     });
   } else {
-    const distPath = path.join(process.cwd(), 'dist');
+    const distPath = path.resolve(process.cwd(), 'dist');
     app.use(express.static(distPath));
+    
+    // SPA Fallback for production
     app.get('*', (req, res) => {
-      res.sendFile(path.join(distPath, 'index.html'));
+      res.sendFile(path.resolve(distPath, 'index.html'));
     });
   }
 
