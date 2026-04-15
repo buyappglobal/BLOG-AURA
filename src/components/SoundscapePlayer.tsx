@@ -1,85 +1,37 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Play, Pause, Volume2, VolumeX, Music } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
-import Hls from 'hls.js';
 
 interface SoundscapePlayerProps {
   streamUrl?: string;
 }
 
 export const SoundscapePlayer: React.FC<SoundscapePlayerProps> = ({ 
-  streamUrl = "https://a5.asurahosting.com/hls/aura_music_business/live.m3u8"
+  streamUrl = "https://solonet.es/wp-content/uploads/2026/03/Medianoche-en-la-Pistacom_.mp3"
 }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  const hlsRef = useRef<Hls | null>(null);
 
-  useEffect(() => {
-    const initHls = () => {
-      if (audioRef.current) {
-        if (Hls.isSupported()) {
-          if (hlsRef.current) {
-            hlsRef.current.destroy();
-          }
-          const hls = new Hls({
-            enableWorker: true,
-            lowLatencyMode: true,
-          });
-          hls.loadSource(streamUrl);
-          hls.attachMedia(audioRef.current);
-          hls.on(Hls.Events.ERROR, (event, data) => {
-            if (data.fatal) {
-              switch (data.type) {
-                case Hls.ErrorTypes.NETWORK_ERROR:
-                  console.error("Fatal network error encountered, trying to recover");
-                  hls.startLoad();
-                  break;
-                case Hls.ErrorTypes.MEDIA_ERROR:
-                  console.error("Fatal media error encountered, trying to recover");
-                  hls.recoverMediaError();
-                  break;
-                default:
-                  console.error("Fatal error, cannot recover");
-                  hls.destroy();
-                  break;
-              }
-            }
-          });
-          hlsRef.current = hls;
-        } else if (audioRef.current.canPlayType('application/vnd.apple.mpegurl')) {
-          audioRef.current.src = streamUrl;
-        }
-      }
-    };
-
-    initHls();
-
-    return () => {
-      if (hlsRef.current) {
-        hlsRef.current.destroy();
-        hlsRef.current = null;
-      }
-    };
-  }, [streamUrl]);
-
-  const togglePlay = () => {
+  const togglePlay = async () => {
     if (audioRef.current) {
       if (isPlaying) {
         audioRef.current.pause();
         setIsPlaying(false);
       } else {
-        const playPromise = audioRef.current.play();
-        if (playPromise !== undefined) {
-          playPromise
-            .then(() => {
-              setIsPlaying(true);
-            })
-            .catch(err => {
-              console.error("Error playing audio:", err);
-              setIsPlaying(false);
-            });
+        try {
+          setIsLoading(true);
+          console.log("Aura: Attempting playback...");
+          await audioRef.current.play();
+          console.log("Aura: Playback started");
+          setIsPlaying(true);
+        } catch (err) {
+          console.error("Aura: Playback failed:", err);
+          setIsPlaying(false);
+        } finally {
+          setIsLoading(false);
         }
       }
     }
@@ -100,25 +52,48 @@ export const SoundscapePlayer: React.FC<SoundscapePlayerProps> = ({
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            className="mb-4 p-4 rounded-2xl bg-black/80 backdrop-blur-xl border border-white/10 shadow-2xl w-64"
+            className="mb-4 p-4 rounded-2xl bg-black/90 backdrop-blur-2xl border border-white/10 shadow-2xl w-64"
           >
             <div className="flex items-center gap-4 mb-4">
               <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-amber-400/20 to-amber-600/20 flex items-center justify-center border border-amber-500/30">
-                <Music className="w-6 h-6 text-amber-500" />
+                <Music className={`w-6 h-6 text-amber-500 ${isPlaying && !isLoading ? 'animate-pulse' : ''}`} />
               </div>
               <div>
                 <h4 className="text-white font-medium text-sm">Aura Soundscape</h4>
-                <p className="text-white/50 text-xs">Live Stream Business</p>
+                <p className="text-white/50 text-xs flex items-center gap-2">
+                  {isLoading ? (
+                    <span className="flex items-center gap-1">
+                      <span className="w-1 h-1 bg-amber-500 rounded-full animate-bounce" />
+                      <span className="w-1 h-1 bg-amber-500 rounded-full animate-bounce [animation-delay:0.2s]" />
+                      <span className="w-1 h-1 bg-amber-500 rounded-full animate-bounce [animation-delay:0.4s]" />
+                      Cargando...
+                    </span>
+                  ) : isPlaying ? (
+                    <span className="flex items-center gap-1 text-emerald-500">
+                      <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
+                      Sonando
+                    </span>
+                  ) : (
+                    'Business Ambience'
+                  )}
+                </p>
               </div>
             </div>
 
             <div className="flex items-center justify-between gap-4">
               <button
                 onClick={togglePlay}
-                className="flex-1 py-2 rounded-full bg-amber-500 hover:bg-amber-400 text-black font-bold transition-colors flex items-center justify-center gap-2"
+                disabled={isLoading}
+                className="flex-1 py-2 rounded-full bg-amber-500 hover:bg-amber-400 text-black font-bold transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
               >
-                {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
-                {isPlaying ? 'Pausa' : 'Escuchar'}
+                {isLoading ? (
+                  <div className="w-4 h-4 border-2 border-black/30 border-t-black rounded-full animate-spin" />
+                ) : isPlaying ? (
+                  <Pause className="w-4 h-4" />
+                ) : (
+                  <Play className="w-4 h-4" />
+                )}
+                {isLoading ? 'Cargando...' : isPlaying ? 'Pausa' : 'Escuchar'}
               </button>
               
               <button
@@ -131,14 +106,17 @@ export const SoundscapePlayer: React.FC<SoundscapePlayerProps> = ({
             
             <audio 
               ref={audioRef} 
-              crossOrigin="anonymous"
-              preload="auto"
-              onPlay={() => setIsPlaying(true)}
+              src={streamUrl}
+              loop
+              onWaiting={() => setIsLoading(true)}
+              onPlaying={() => setIsLoading(false)}
               onPause={() => setIsPlaying(false)}
+              onError={(e) => console.error("Aura: Audio error:", e)}
             />
           </motion.div>
         )}
       </AnimatePresence>
+
 
       <button
         onClick={() => setIsExpanded(!isExpanded)}
