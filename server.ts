@@ -1,15 +1,32 @@
 import express from "express";
 import { createServer as createViteServer } from "vite";
 import path from "path";
+import fs from "fs";
 import satori from "satori";
 import { Resvg } from "@resvg/resvg-js";
+import matter from 'gray-matter';
+
+// Helper to get all posts for static generation
+function getStaticPosts() {
+  const postsDir = path.resolve(process.cwd(), 'posts');
+  if (!fs.existsSync(postsDir)) return [];
+  return fs.readdirSync(postsDir)
+    .filter(file => file.endsWith('.md'))
+    .map(file => file.replace('.md', ''));
+}
 
 async function startServer() {
   const app = express();
   const PORT = 3000;
 
+  // Static Generation Logic for SEO and Direct Access
+  const slugs = getStaticPosts();
+  const distPath = path.resolve(process.cwd(), 'dist');
+  const indexPath = path.resolve(process.cwd(), 'index.html');
+
   // API Route for Dynamic OG Images
   app.get("/api/og", async (req, res) => {
+    // ... (keep existing OG logic)
     try {
       const { title, category } = req.query;
       
@@ -231,13 +248,12 @@ async function startServer() {
     app.use('*', async (req, res, next) => {
       const url = req.originalUrl;
 
-      // If it's a file request (has a dot) or an API call, let it pass to other middlewares
+      // If it's a file request (has a dot) or an API call, let it pass
       if (url.includes('.') || url.startsWith('/api')) {
         return next();
       }
 
       try {
-        const fs = await import('fs');
         const indexPath = path.resolve(process.cwd(), 'index.html');
         let template = fs.readFileSync(indexPath, 'utf-8');
         template = await vite.transformIndexHtml(url, template);
@@ -249,11 +265,18 @@ async function startServer() {
     });
   } else {
     const distPath = path.resolve(process.cwd(), 'dist');
-    app.use(express.static(distPath));
     
-    // SPA Fallback for production
+    // Serve static files from dist
+    app.use(express.static(distPath));
+
+    // Handle all other routes by serving index.html (SPA Fallback)
     app.get('*', (req, res) => {
-      res.sendFile(path.resolve(distPath, 'index.html'));
+      const indexPath = path.resolve(distPath, 'index.html');
+      if (fs.existsSync(indexPath)) {
+        res.sendFile(indexPath);
+      } else {
+        res.status(404).send('Not Found');
+      }
     });
   }
 
