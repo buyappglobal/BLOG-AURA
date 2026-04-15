@@ -5,27 +5,100 @@
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
+  
   <url>
     <loc>https://blog.auradisplay.es/adios-radio-generica-retail</loc>
-    <lastmod>2026-03-15</lastmod>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://blog.auradisplay.es/hilo-musical-circadiano-hosteleria</loc>
-    <lastmod>2026-03-10</lastmod>
+    <loc>https://blog.auradisplay.es/aura-tecnologia-pwa-instaladores</loc>
+    <lastmod>2026-04-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://blog.auradisplay.es/smart-cities-comunicacion-ciudadana</loc>
-    <lastmod>2026-03-05</lastmod>
+    <loc>https://blog.auradisplay.es/biometria-sonora</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://blog.auradisplay.es/comparativa-ahorro-sevilla</loc>
+    <lastmod>2026-04-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://blog.auradisplay.es/guia-legal-sgae</loc>
+    <lastmod>2026-04-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://blog.auradisplay.es/hilo-musical-circadiano-pymes</loc>
+    <lastmod>2026-04-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://blog.auradisplay.es/hosteleria-nocturna-huelva</loc>
+    <lastmod>2026-04-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://blog.auradisplay.es/marketing-sensorial-estetica-spas</loc>
+    <lastmod>2026-04-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://blog.auradisplay.es/miedo-inspeccion-restaurante</loc>
+    <lastmod>2026-04-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://blog.auradisplay.es/multimedia-hub-retail-lujo</loc>
+    <lastmod>2026-04-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://blog.auradisplay.es/neuro-venta-tiendas-ropa</loc>
+    <lastmod>2026-04-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://blog.auradisplay.es/ritmo-circadiano-retail</loc>
+    <lastmod>2026-04-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://blog.auradisplay.es/smart-cities-comunicacion-publica</loc>
+    <lastmod>2026-04-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://blog.auradisplay.es/smart-tv-comercial-hosteleria</loc>
+    <lastmod>2026-04-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://blog.auradisplay.es/supermercados-ahorro-musica-ia</loc>
     <lastmod>2026-04-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://blog.auradisplay.es/aura-soundscape-lujo-hotelero</loc>
+    <lastmod>2026-04-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

@@ -4,8 +4,8 @@ description: "Critica al uso de la radio convencional en el retail. Descubre có
 keywords: "hilo musical inteligente, radio en tiendas, marketing retail, Aura Business, exclusividad sonora"
 category: "Retail"
 author: "Aura Business Strategy Team"
-date: "2026-04-15"
-image: "https://images.unsplash.com/photo-1478737270239-2f02b77fc618?auto=format&fit=crop&q=80&w=1200&h=630"
+date: "2026-03-28"
+image: 'https://images.unsplash.com/photo-1478737270239-2f02b77fc618?q=80&w=1920&h=1080&auto=format&fit=crop'
 ---
 
 # Adiós a la Radio Genérica: El Error que Mata tu Branding

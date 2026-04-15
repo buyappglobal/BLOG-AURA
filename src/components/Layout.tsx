@@ -4,6 +4,7 @@ import { Zap, Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import ThemeToggle from './ThemeToggle';
 import { SoundscapePlayer } from './SoundscapePlayer';
+import ContactCTA from './ContactCTA';
 
 export default function Layout() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -75,6 +76,9 @@ export default function Layout() {
 
       <main className="flex-grow relative z-10">
         <Outlet />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ContactCTA />
+        </div>
       </main>
 
       <footer className="bg-aura-bg border-t border-aura-border py-8 relative z-10">

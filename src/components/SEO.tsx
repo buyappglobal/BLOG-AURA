@@ -22,8 +22,10 @@ export default function SEO({
   const fullTitle = `${title} | Aura Business`;
   const url = `https://blog.auradisplay.es/${slug}`;
   
-  // Dynamic OG Image URL
+  // Dynamic OG Image URL logic
   const dynamicOgImage = `/api/og?title=${encodeURIComponent(title)}&category=${encodeURIComponent(category)}`;
+  
+  // CRITICAL: Use the post's featured image if available, otherwise fallback to dynamic OG
   const ogImage = image || dynamicOgImage;
 
   useEffect(() => {
@@ -42,7 +44,7 @@ export default function SEO({
     updateMeta('description', description);
     if (keywords) updateMeta('keywords', keywords);
     
-    // OpenGraph
+    // OpenGraph - Priority to the post's actual image
     updateMeta('og:title', fullTitle, 'property');
     updateMeta('og:description', description, 'property');
     updateMeta('og:image', ogImage, 'property');
@@ -50,7 +52,7 @@ export default function SEO({
     updateMeta('og:type', type, 'property');
     updateMeta('og:site_name', 'Aura Business', 'property');
     
-    // Twitter
+    // Twitter - Priority to the post's actual image
     updateMeta('twitter:card', 'summary_large_image');
     updateMeta('twitter:title', fullTitle);
     updateMeta('twitter:description', description);
