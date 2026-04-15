@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { Zap, Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import ThemeToggle from './ThemeToggle';
+import { SoundscapePlayer } from './SoundscapePlayer';
 
 export default function Layout() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -95,6 +96,7 @@ export default function Layout() {
           </div>
         </div>
       </footer>
+      <SoundscapePlayer />
     </div>
   );
 }
