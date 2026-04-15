@@ -103,18 +103,24 @@ export default function PostPage() {
           <div className="flex gap-4">
             <button 
               onClick={() => {
+                const url = window.location.href;
                 if (navigator.share) {
                   navigator.share({
                     title: post.title,
                     text: post.description,
-                    url: window.location.href,
+                    url: url,
                   }).catch(console.error);
                 } else {
-                  navigator.clipboard.writeText(window.location.href);
-                  alert('¡Enlace copiado al portapapeles!');
+                  navigator.clipboard.writeText(url);
+                  // Simple toast notification
+                  const toast = document.createElement('div');
+                  toast.className = 'fixed bottom-24 left-1/2 -translate-x-1/2 bg-aura-accent text-white px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest shadow-2xl z-50 animate-bounce';
+                  toast.innerText = '¡Enlace copiado!';
+                  document.body.appendChild(toast);
+                  setTimeout(() => toast.remove(), 3000);
                 }
               }}
-              className="p-4 rounded-full aura-border hover:bg-aura-accent hover:text-white transition-all group"
+              className="p-4 rounded-full aura-border hover:bg-aura-accent hover:text-white transition-all group relative"
               title="Compartir artículo"
             >
               <Share2 className="w-5 h-5 group-hover:scale-110 transition-transform" />
