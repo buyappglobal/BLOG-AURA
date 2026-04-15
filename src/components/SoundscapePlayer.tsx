@@ -17,21 +17,49 @@ export const SoundscapePlayer: React.FC<SoundscapePlayerProps> = ({
   const hlsRef = useRef<Hls | null>(null);
 
   useEffect(() => {
-    if (audioRef.current && streamUrl.endsWith('.m3u8')) {
-      if (Hls.isSupported()) {
-        const hls = new Hls();
-        hls.loadSource(streamUrl);
-        hls.attachMedia(audioRef.current);
-        hlsRef.current = hls;
-      } else if (audioRef.current.canPlayType('application/vnd.apple.mpegurl')) {
-        // For Safari which supports HLS natively
-        audioRef.current.src = streamUrl;
+    const initHls = () => {
+      if (audioRef.current) {
+        if (Hls.isSupported()) {
+          if (hlsRef.current) {
+            hlsRef.current.destroy();
+          }
+          const hls = new Hls({
+            enableWorker: true,
+            lowLatencyMode: true,
+          });
+          hls.loadSource(streamUrl);
+          hls.attachMedia(audioRef.current);
+          hls.on(Hls.Events.ERROR, (event, data) => {
+            if (data.fatal) {
+              switch (data.type) {
+                case Hls.ErrorTypes.NETWORK_ERROR:
+                  console.error("Fatal network error encountered, trying to recover");
+                  hls.startLoad();
+                  break;
+                case Hls.ErrorTypes.MEDIA_ERROR:
+                  console.error("Fatal media error encountered, trying to recover");
+                  hls.recoverMediaError();
+                  break;
+                default:
+                  console.error("Fatal error, cannot recover");
+                  hls.destroy();
+                  break;
+              }
+            }
+          });
+          hlsRef.current = hls;
+        } else if (audioRef.current.canPlayType('application/vnd.apple.mpegurl')) {
+          audioRef.current.src = streamUrl;
+        }
       }
-    }
+    };
+
+    initHls();
 
     return () => {
       if (hlsRef.current) {
         hlsRef.current.destroy();
+        hlsRef.current = null;
       }
     };
   }, [streamUrl]);
@@ -40,10 +68,20 @@ export const SoundscapePlayer: React.FC<SoundscapePlayerProps> = ({
     if (audioRef.current) {
       if (isPlaying) {
         audioRef.current.pause();
+        setIsPlaying(false);
       } else {
-        audioRef.current.play().catch(err => console.error("Error playing audio:", err));
+        const playPromise = audioRef.current.play();
+        if (playPromise !== undefined) {
+          playPromise
+            .then(() => {
+              setIsPlaying(true);
+            })
+            .catch(err => {
+              console.error("Error playing audio:", err);
+              setIsPlaying(false);
+            });
+        }
       }
-      setIsPlaying(!isPlaying);
     }
   };
 
@@ -93,8 +131,8 @@ export const SoundscapePlayer: React.FC<SoundscapePlayerProps> = ({
             
             <audio 
               ref={audioRef} 
-              loop 
-              preload="none"
+              crossOrigin="anonymous"
+              preload="auto"
               onPlay={() => setIsPlaying(true)}
               onPause={() => setIsPlaying(false)}
             />
