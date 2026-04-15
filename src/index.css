@@ -5,12 +5,13 @@
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "Courier New", Courier, monospace;
   
-  --color-aura-bg: #050505;
+  --color-aura-bg: var(--aura-bg);
   --color-aura-accent: #d4af37; /* Metallic Gold */
   --color-aura-accent-soft: rgba(212, 175, 55, 0.1);
-  --color-aura-muted: #a1a1aa;
-  --color-aura-card: #0c0c0c;
-  --color-aura-border: rgba(255, 255, 255, 0.05);
+  --color-aura-muted: var(--aura-muted);
+  --color-aura-card: var(--aura-card);
+  --color-aura-border: var(--aura-border);
+  --color-aura-text: var(--aura-text);
 
   /* Category Colors */
   --color-cat-retail: #d4af37;
@@ -19,9 +20,25 @@
   --color-cat-ecosistema: #7c3aed;
 }
 
+:root {
+  --aura-bg: #050505;
+  --aura-muted: #a1a1aa;
+  --aura-card: #0c0c0c;
+  --aura-border: rgba(255, 255, 255, 0.05);
+  --aura-text: #f4f4f5;
+}
+
+:root.light {
+  --aura-bg: #fcfcfc;
+  --aura-muted: #4b5563;
+  --aura-card: #ffffff;
+  --aura-border: rgba(0, 0, 0, 0.08);
+  --aura-text: #111827;
+}
+
 @layer base {
   body {
-    @apply bg-aura-bg text-[#f4f4f5] font-sans antialiased overflow-x-hidden;
+    @apply bg-aura-bg text-aura-text font-sans antialiased overflow-x-hidden transition-colors duration-300;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -45,15 +62,19 @@
   }
 
   .markdown-body {
-    @apply prose prose-invert max-w-none;
+    @apply prose max-w-none transition-colors duration-300;
     @apply text-aura-muted leading-relaxed;
   }
 
-  .markdown-body h1 { @apply text-[#f4f4f5] text-4xl mb-8 mt-12; }
-  .markdown-body h2 { @apply text-[#f4f4f5] text-2xl mb-4 mt-8; }
+  :root:not(.light) .markdown-body {
+    @apply prose-invert;
+  }
+
+  .markdown-body h1 { @apply text-aura-text text-4xl mb-8 mt-12; }
+  .markdown-body h2 { @apply text-aura-text text-2xl mb-4 mt-8; }
   .markdown-body p { @apply mb-6; }
   .markdown-body li { @apply mb-2; }
-  .markdown-body strong { @apply text-white; }
+  .markdown-body strong { @apply text-aura-text font-bold; }
 }
 
 /* Custom scrollbar */

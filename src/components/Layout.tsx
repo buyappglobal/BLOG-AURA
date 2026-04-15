@@ -2,6 +2,7 @@ import { Link, Outlet } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { Zap, Menu, X } from 'lucide-react';
 import { useState } from 'react';
+import ThemeToggle from './ThemeToggle';
 
 export default function Layout() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -21,18 +22,18 @@ export default function Layout() {
                 className="w-10 h-10 object-contain group-hover:scale-110 transition-transform"
                 referrerPolicy="no-referrer"
               />
-              <span className="text-xl font-extrabold tracking-tighter text-white flex items-center gap-2">
+              <span className="text-xl font-extrabold tracking-tighter text-aura-text flex items-center gap-2">
                 AURA <span className="text-aura-accent">BUSINESS</span>
               </span>
             </Link>
 
             <nav className="hidden md:flex items-center gap-10">
-              <Link to="/" className="text-[10px] font-bold text-aura-muted hover:text-white transition-colors uppercase tracking-[0.2em]">Ecosistema</Link>
+              <Link to="/" className="text-[10px] font-bold text-aura-muted hover:text-aura-accent transition-colors uppercase tracking-[0.2em]">Ecosistema</Link>
               <a 
                 href="https://auradisplay.es" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="text-[10px] font-bold text-aura-muted hover:text-white transition-colors uppercase tracking-[0.2em]"
+                className="text-[10px] font-bold text-aura-muted hover:text-aura-accent transition-colors uppercase tracking-[0.2em]"
               >
                 Aura Display
               </a>
@@ -40,17 +41,20 @@ export default function Layout() {
                 href="https://partners.auradisplay.es" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="text-[10px] font-bold text-aura-muted hover:text-white transition-colors uppercase tracking-[0.2em]"
+                className="text-[10px] font-bold text-aura-muted hover:text-aura-accent transition-colors uppercase tracking-[0.2em]"
               >
                 Partners
               </a>
               <div className="h-3 w-[1px] bg-aura-border" />
-              <span className="text-[9px] font-mono text-aura-muted/50 uppercase tracking-tighter">Aura Business Blog</span>
+              <ThemeToggle />
             </nav>
 
-            <button className="md:hidden text-white" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-              {isMenuOpen ? <X /> : <Menu />}
-            </button>
+            <div className="md:hidden flex items-center gap-4">
+              <ThemeToggle />
+              <button className="text-aura-text" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                {isMenuOpen ? <X /> : <Menu />}
+              </button>
+            </div>
           </div>
         </div>
 
@@ -61,9 +65,9 @@ export default function Layout() {
             animate={{ opacity: 1, y: 0 }}
             className="md:hidden bg-aura-bg border-b border-aura-border px-4 py-6 flex flex-col gap-4"
           >
-            <Link to="/" className="text-sm font-bold text-white uppercase tracking-widest" onClick={() => setIsMenuOpen(false)}>Ecosistema</Link>
-            <a href="https://auradisplay.es" className="text-sm font-bold text-white uppercase tracking-widest">Neuro-Venta</a>
-            <a href="https://partners.auradisplay.es" className="text-sm font-bold text-white uppercase tracking-widest">Legal Tech</a>
+            <Link to="/" className="text-sm font-bold text-aura-text uppercase tracking-widest" onClick={() => setIsMenuOpen(false)}>Ecosistema</Link>
+            <a href="https://auradisplay.es" className="text-sm font-bold text-aura-text uppercase tracking-widest">Neuro-Venta</a>
+            <a href="https://partners.auradisplay.es" className="text-sm font-bold text-aura-text uppercase tracking-widest">Legal Tech</a>
           </motion.div>
         )}
       </header>

@@ -39,7 +39,7 @@ export default function BlogList() {
             className={`px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all duration-300 border ${
               selectedCategory === null 
                 ? "bg-aura-accent text-black border-aura-accent" 
-                : "bg-white/5 text-aura-muted border-white/10 hover:border-aura-accent/40"
+                : "bg-aura-card text-aura-muted border-aura-border hover:border-aura-accent/40"
             }`}
           >
             Todos
@@ -51,7 +51,7 @@ export default function BlogList() {
               className={`px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all duration-300 border ${
                 selectedCategory === cat 
                   ? "bg-aura-accent text-black border-aura-accent" 
-                  : "bg-white/5 text-aura-muted border-white/10 hover:border-aura-accent/40"
+                  : "bg-aura-card text-aura-muted border-aura-border hover:border-aura-accent/40"
               }`}
             >
               {cat}
@@ -187,7 +187,7 @@ export default function BlogList() {
             <p className="text-xs text-aura-muted leading-relaxed mb-4">
               Optimizando el ecosistema sensorial con <strong>JSON-LD</strong> y esquemas avanzados.
             </p>
-            <div className="font-mono text-[9px] text-aura-muted/40 bg-black/40 p-3 rounded border border-aura-border">
+            <div className="font-mono text-[9px] text-aura-muted/40 bg-aura-bg p-3 rounded border border-aura-border">
               &lt;script type="application/ld+json"&gt;...
             </div>
           </div>

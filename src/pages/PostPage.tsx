@@ -38,7 +38,7 @@ export default function PostPage() {
         animate={{ opacity: 1, x: 0 }}
         className="mb-12"
       >
-        <Link to="/" className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-aura-muted hover:text-white transition-colors">
+        <Link to="/" className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-aura-muted hover:text-aura-text transition-colors">
           <ArrowLeft className="w-4 h-4" /> Volver al blog
         </Link>
       </motion.div>
@@ -95,13 +95,28 @@ export default function PostPage() {
               <User className="w-7 h-7 text-aura-muted" />
             </div>
             <div>
-              <p className="text-sm font-bold text-white uppercase tracking-wider">{post.author}</p>
+              <p className="text-sm font-bold text-aura-text uppercase tracking-wider">{post.author}</p>
               <p className="text-xs font-mono text-aura-muted uppercase tracking-tighter">Aura Business Strategy Team</p>
             </div>
           </div>
           
           <div className="flex gap-4">
-            <button className="p-4 rounded-full aura-border hover:bg-aura-accent hover:text-white transition-all group">
+            <button 
+              onClick={() => {
+                if (navigator.share) {
+                  navigator.share({
+                    title: post.title,
+                    text: post.description,
+                    url: window.location.href,
+                  }).catch(console.error);
+                } else {
+                  navigator.clipboard.writeText(window.location.href);
+                  alert('¡Enlace copiado al portapapeles!');
+                }
+              }}
+              className="p-4 rounded-full aura-border hover:bg-aura-accent hover:text-white transition-all group"
+              title="Compartir artículo"
+            >
               <Share2 className="w-5 h-5 group-hover:scale-110 transition-transform" />
             </button>
           </div>

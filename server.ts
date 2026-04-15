@@ -20,9 +20,16 @@ async function startServer() {
         'Ecosistema': '#7c3aed', // Purple
       };
 
-      const accentColor = categoryColors[category as string] || '#d4af37';
+      const isSmartCityPost = title?.toString().includes('Smart Cities');
+      const accentColor = isSmartCityPost ? '#10b981' : (categoryColors[category as string] || '#d4af37');
 
-      // Load font
+      const footerText = isSmartCityPost 
+        ? 'Eficiencia Pública • Comunicación Ciudadana • Smart City'
+        : 'Neuro-Arquitectura • Biometría Sonora • Legal Tech';
+
+      const tickerText = isSmartCityPost
+        ? 'AVISO: Inscripciones abiertas para los talleres de verano'
+        : '';
       const fontResponse = await fetch("https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hjp-Ek-_EeA.woff");
       const fontData = await fontResponse.arrayBuffer();
 
@@ -133,7 +140,7 @@ async function startServer() {
                 props: {
                   style: {
                     position: 'absolute',
-                    bottom: '60px',
+                    bottom: tickerText ? '100px' : '60px',
                     left: '80px',
                     display: 'flex',
                     alignItems: 'center',
@@ -143,15 +150,44 @@ async function startServer() {
                     textTransform: 'uppercase',
                     letterSpacing: '0.2em',
                   },
+                  children: footerText.split(' • ').map((text, i, arr) => [
+                    { type: 'span', props: { children: text } },
+                    ...(i < arr.length - 1 ? [{ type: 'div', props: { style: { width: '4px', height: '4px', backgroundColor: '#333', borderRadius: '50%' } } }] : [])
+                  ]).flat()
+                }
+              },
+              // Ticker for Smart City
+              ...(tickerText ? [{
+                type: 'div',
+                props: {
+                  style: {
+                    position: 'absolute',
+                    bottom: '0',
+                    left: '0',
+                    right: '0',
+                    height: '60px',
+                    backgroundColor: accentColor,
+                    display: 'flex',
+                    alignItems: 'center',
+                    padding: '0 80px',
+                  },
                   children: [
-                    { type: 'span', props: { children: 'Neuro-Arquitectura' } },
-                    { type: 'div', props: { style: { width: '4px', height: '4px', backgroundColor: '#333', borderRadius: '50%' } } },
-                    { type: 'span', props: { children: 'Biometría Sonora' } },
-                    { type: 'div', props: { style: { width: '4px', height: '4px', backgroundColor: '#333', borderRadius: '50%' } } },
-                    { type: 'span', props: { children: 'Legal Tech' } }
+                    {
+                      type: 'span',
+                      props: {
+                        style: {
+                          color: 'black',
+                          fontSize: '20px',
+                          fontWeight: 'bold',
+                          textTransform: 'uppercase',
+                          letterSpacing: '0.05em',
+                        },
+                        children: tickerText
+                      }
+                    }
                   ]
                 }
-              }
+              }] : [])
             ]
           }
         } as any,

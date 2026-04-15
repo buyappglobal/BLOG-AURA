@@ -22,7 +22,7 @@ const categoryStyles: Record<string, string> = {
 export default function CategoryBadge({ category, className, size = 'sm' }: CategoryBadgeProps) {
   if (!category) return null;
   
-  const style = categoryStyles[category] || 'text-aura-muted bg-white/5 border-white/10';
+  const style = categoryStyles[category] || 'text-aura-muted bg-aura-card border-aura-border';
   
   return (
     <span className={cn(
