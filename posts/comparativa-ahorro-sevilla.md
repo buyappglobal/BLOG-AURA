@@ -30,15 +30,26 @@ Imaginemos un local de unos 80m² en el centro de Sevilla o en el barrio de Tria
 
 ## Análisis del Retorno de Inversión (ROI)
 
-Para un empresario, no se trata solo de gastar menos, sino de invertir mejor. Si consideramos el cambio a Aura como una inversión en tecnología legal, podemos aplicar la fórmula del ROI para ver el impacto real:
+Para un empresario, no se trata solo de gastar menos, sino de invertir mejor. Si consideramos el cambio a Aura como una inversión en tecnología legal, el impacto financiero es masivo.
 
-$$ROI = \frac{Ahorro - Inversión}{Inversión} \times 100$$
+### La Fórmula del Ahorro Real:
 
-Si el ahorro anual es de **420€** (600€ - 180€) y la inversión en el servicio es de **180€**:
+> **ROI = [(Ahorro Anual - Inversión) / Inversión] x 100**
 
-$$ROI = \frac{420 - 180}{180} \times 100 = 133.3\%$$
+Si desglosamos los números para tu bar en Sevilla:
 
-Un **ROI del 133%** significa que por cada euro que dejas de pagar a las entidades de gestión e inviertes en Aura, recuperas tu inversión y obtienes un beneficio adicional en eficiencia y tranquilidad.
+1. **Ahorro Bruto Anual:** 600€ (SGAE/AGEDI) - 180€ (Aura) = **420€**
+2. **Inversión en Aura:** **180€**
+3. **Cálculo del Retorno:**
+   * (420€ - 180€) = 240€ de beneficio neto.
+   * 240€ / 180€ = 1.33
+   * 1.33 x 100 = **133.3%**
+
+### ¿Qué significa un ROI del 133%?
+
+Significa que por cada euro que dejas de pagar a las entidades de gestión e inviertes en Aura, **recuperas tu inversión íntegramente y obtienes un beneficio adicional del 133%** en eficiencia, calidad sonora y, sobre todo, en tranquilidad legal.
+
+En términos prácticos: **Aura se paga sola en menos de 5 meses.**
 
 ## Conclusión: Deja de pagar hoy mismo
 
