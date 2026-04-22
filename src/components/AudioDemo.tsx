@@ -15,13 +15,14 @@ export const AudioDemo: React.FC<AudioDemoProps> = ({
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [volume, setVolume] = useState(0.8);
+  const [volume, setVolume] = useState(0.5);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const currentTrack = initialPlaylist[currentIndex];
 
   useEffect(() => {
     if (audioRef.current) {
+      audioRef.current.volume = volume;
       audioRef.current.load();
       if (isPlaying) audioRef.current.play();
     }
