@@ -8,6 +8,13 @@ image: 'https://images.unsplash.com/photo-1531746790731-6c087fecd05a?q=80&w=1920
 category: 'Ecosistema'
 ---
 
+<div class="bg-yellow-500/5 border border-yellow-500/20 rounded-2xl p-6 mb-10 text-sm leading-relaxed">
+  <strong class="text-yellow-500 block uppercase tracking-widest text-xs mb-2">Servicio en Desarrollo Avanzado</strong>
+  <p class="text-aura-muted">
+    El <strong>Aura AI Agent</strong> es actualmente una funcionalidad en <strong>fase de desarrollo avanzado</strong> y no se encuentra disponible para contratación directa. Este es un <strong>servicio extra bajo demanda</strong>. Si tu empresa requiere esta tecnología, contacta con nuestro equipo de estrategas para estudiar tu caso específico, analizar la viabilidad y consultar las fechas de lanzamiento.
+  </p>
+</div>
+
 ¿Cuántas ventas pierdes al día porque tu personal está ocupado atendiendo a otro cliente? ¿Cuántos clientes entran y salen de tu local sin que jamás vuelvas a saber de ellos?
 
 El **Aura AI Agent** es la pieza que faltaba en el puzzle del marketing sensorial. Es el puente entre el mundo físico de tu tienda y el mundo digital del smartphone de tu cliente.
