@@ -4,7 +4,7 @@ description: 'La cartelería digital no es solo estética; es una herramienta de
 keywords: 'digital signage hosteleria, carteleria digital retail, aura visuals, pantallas marketing, ofertas tiempo real'
 author: 'Aura Strategy Team'
 date: '2026-04-21'
-image: 'https://images.unsplash.com/photo-1542744173-8e7e5381bb03?q=80&w=1920&h=1080&auto=format&fit=crop'
+image: 'https://solonet.es/wp-content/uploads/2026/04/TIZA-VS-SIGNAGE-scaled.png'
 category: 'Retail'
 ---
 
