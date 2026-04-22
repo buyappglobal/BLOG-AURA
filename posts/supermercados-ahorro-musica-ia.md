@@ -44,6 +44,6 @@ En Andalucía occidental, el mercado no es solo un lugar de compra; es un punto 
 
 No permitas que un gasto administrativo devore tu margen de beneficio. Es hora de profesionalizar tu atmósfera sonora.
 
-**Solicita hoy mismo tu Auditoría de Ahorro Gratuita.** Analizaremos tus metros cuadrados, tus tarifas actuales y te mostraremos cómo Aura puede ahorrarte 1.500€ al año mientras tus ventas suben un 10%.
+**Solicita hoy mismo tu Auditoría de Ahorro Gratuita.** Analizaremos tus metros cuadrados, tus tarifas actuales y te mostraremos cómo ahorrar mientras tus ventas suben.
 
-[**QUIERO MI AUDITORÍA GRATUITA**]
+Consulta nuestras soluciones para retail en [**AuraDisplay.es**](https://auradisplay.es) o descubre el [Ecosistema Sensorial completo](https://blog.auradisplay.es/ecosistema-aura-marketing-sensorial).

@@ -5,10 +5,21 @@
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
+  <url>
+    <loc>https://blog.auradisplay.es/soluciones-marketing-sensorial</loc>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
   
   <url>
     <loc>https://blog.auradisplay.es/adios-radio-generica-retail</loc>
     <lastmod>2026-03-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://blog.auradisplay.es/aura-soundscape-lujo-hotelero</loc>
+    <lastmod>2026-04-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -29,6 +40,12 @@
     <lastmod>2026-04-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://blog.auradisplay.es/ecosistema-aura-marketing-sensorial</loc>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
   </url>
   <url>
     <loc>https://blog.auradisplay.es/guia-legal-sgae</loc>
@@ -93,12 +110,6 @@
   <url>
     <loc>https://blog.auradisplay.es/supermercados-ahorro-musica-ia</loc>
     <lastmod>2026-04-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://blog.auradisplay.es/aura-soundscape-lujo-hotelero</loc>
-    <lastmod>2026-04-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

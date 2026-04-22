@@ -31,4 +31,4 @@ Nuestra IA entiende el contexto. No suena igual una boutique de lujo en la Plaza
 
 **¿Quieres que tu tienda de ropa venda más a través del oído?**
 
-[Descubre la Neuro-Venta con Aura Business.](#)
+Descubre la Neuro-Venta aplicada en [**AuraDisplay.es**](https://auradisplay.es) y únete a la revolución del [Ecosistema Aura](https://blog.auradisplay.es/ecosistema-aura-marketing-sensorial).

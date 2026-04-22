@@ -36,7 +36,7 @@ A diferencia de las plataformas internacionales despersonalizadas, Aura ofrece u
 
 El estándar del turismo de élite ya tiene nombre. Es hora de que su hotel suene a lo que realmente es: una joya de la hospitalidad andaluza.
 
-[**CONOCE LA EXPERIENCIA AURA SOUNDSCAPE AQUÍ**](https://aurasoundscape.com/)
+Conozca la experiencia en [**AuraSoundscape.com**](https://aurasoundscape.com) y explore nuestra matriz de servicios en [**AuraDisplay.es**](https://auradisplay.es).
 
 ---
-*¿Desea elevar el estándar sensorial de su establecimiento? Solicite una sesión de consultoría en Branding Sonoro con nuestro equipo estratégico.*
+*¿Desea elevar el estándar sensorial de su establecimiento? Solicite una sesión de consultoría en Branding Sonoro con nuestro equipo estratégico conociendo nuestro [Ecosistema Sensorial](https://blog.auradisplay.es/ecosistema-aura-marketing-sensorial).*

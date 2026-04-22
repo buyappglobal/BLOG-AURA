@@ -17,9 +17,18 @@ function generateSitemap() {
     .map(file => {
       const content = fs.readFileSync(path.join(postsDir, file), 'utf-8');
       const { data } = matter(content);
+      const slug = file.replace('.md', '');
+      let priority = '0.8';
+      
+      // Master post for ecosystem gets highest priority to boost indexation
+      if (slug === 'ecosistema-aura-marketing-sensorial') {
+        priority = '1.0';
+      }
+
       return {
-        slug: file.replace('.md', ''),
-        date: data.date || new Date().toISOString().split('T')[0]
+        slug,
+        date: data.date || new Date().toISOString().split('T')[0],
+        priority
       };
     });
 
@@ -30,12 +39,17 @@ function generateSitemap() {
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
+  <url>
+    <loc>${BASE_URL}/soluciones-marketing-sensorial</loc>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
   ${posts.map(post => `
   <url>
     <loc>${BASE_URL}/${post.slug}</loc>
     <lastmod>${post.date}</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>${post.priority}</priority>
   </url>`).join('')}
 </urlset>`;
 

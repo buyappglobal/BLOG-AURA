@@ -51,4 +51,4 @@ La digitalización no es solo tener una web; es optimizar cada estímulo de tu l
 
 **No dejes que tu marca suene por accidente. Haz que suene por estrategia.**
 
-[Solicita tu Demo de Aura Business y revoluciona tu punto de venta.](#)
+Accede a la plataforma líder en [**AuraDisplay.es**](https://auradisplay.es) y conoce nuestra visión del [Marketing Sensorial aplicado](https://blog.auradisplay.es/ecosistema-aura-marketing-sensorial).

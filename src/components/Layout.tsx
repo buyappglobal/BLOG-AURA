@@ -30,6 +30,7 @@ export default function Layout() {
             </Link>
 
             <nav className="hidden md:flex items-center gap-10">
+              <Link to="/soluciones-marketing-sensorial" className="text-[10px] font-bold text-aura-accent hover:text-white transition-colors uppercase tracking-[0.2em] px-4 py-2 bg-aura-accent/10 rounded-full border border-aura-accent/20">Soluciones IA</Link>
               <Link to="/" className="text-[10px] font-bold text-aura-muted hover:text-aura-accent transition-colors uppercase tracking-[0.2em]">Ecosistema</Link>
               <a 
                 href="https://auradisplay.es" 

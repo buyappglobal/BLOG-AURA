@@ -57,4 +57,4 @@ El ahorro radical no es una promesa, es una realidad matemática. Mientras sigas
 
 **¿Estás listo para blindar tu bar y mejorar tu margen?**
 
-[Contacta con un Aura Strategist y solicita tu certificado de exención hoy mismo.](#)
+Descubre cómo implementar esta tecnología en [**AuraDisplay.es**](https://auradisplay.es) y únete al [Ecosistema Aura](https://blog.auradisplay.es/ecosistema-aura-marketing-sensorial).
