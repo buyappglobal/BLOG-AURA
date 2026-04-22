@@ -19,7 +19,7 @@ export default function LandingPage() {
       image: "https://images.unsplash.com/photo-1542744173-8e7e5381bb03?auto=format&fit=crop&q=80&w=800"
     },
     {
-      title: "Aura AI Agent (Ventas)",
+      title: "Aura AI Agent (Ventas) - EN CONSTRUCCIÓN",
       description: "El asistente que vende por ti. Conexión directa mediante QR inteligente para fidelización, pedidos o información en el punto de venta.",
       icon: <MessageSquare className="w-8 h-8 text-aura-accent" />,
       features: ["Integración WhatsApp Business", "Fidelización automática", "Atención 24/7 sin personal"],
@@ -42,6 +42,16 @@ export default function LandingPage() {
       niche: "Gastronomía & Ocio",
       benefit: "Ambientes que evolucionan del brunch relajado a las copas nocturnas sin intervención humana.",
       context: "Dinamiza tu local según la hora del día."
+    },
+    {
+      niche: "Gimnasios & Wellness",
+      benefit: "Paisajes sonoros motivacionales que se sincronizan con la intensidad de la clase dirigida.",
+      context: "Potencia el rendimiento con biofeedback sonoro en tiempo real."
+    },
+    {
+      niche: "Joyerías & Lujo",
+      benefit: "Atmosferas minimalistas que resaltan la exclusividad del producto mediante iluminación y silencio absoluto.",
+      context: "El entorno perfecto para cerrar ventas de alto valor."
     }
   ];
 

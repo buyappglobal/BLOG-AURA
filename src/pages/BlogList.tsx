@@ -7,19 +7,26 @@ import CategoryBadge from '../components/CategoryBadge';
 import FeaturedCarousel from '../components/FeaturedCarousel';
 import { AudioDemo } from '../components/AudioDemo';
 import { CompactContactWidget } from '../components/CompactContactWidget';
+import { BlogSearch } from '../components/BlogSearch';
 import { ArrowRight, Filter, ShieldCheck, Zap, Sparkles } from 'lucide-react';
 
 export default function BlogList() {
   const allPosts = getAllPosts();
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const categories = ['Retail', 'Hostelería', 'Partners', 'Ecosistema'];
 
-  const filteredPosts = selectedCategory 
-    ? allPosts.filter(post => post.category === selectedCategory)
-    : allPosts;
+  const filteredPosts = allPosts.filter(post => {
+    const matchesCategory = selectedCategory ? post.category === selectedCategory : true;
+    const matchesSearch = searchQuery 
+      ? post.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+        post.description.toLowerCase().includes(searchQuery.toLowerCase())
+      : true;
+    return matchesCategory && matchesSearch;
+  });
 
-  const displayPosts = selectedCategory ? filteredPosts : filteredPosts.slice(5);
+  const displayPosts = filteredPosts;
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -125,6 +132,9 @@ export default function BlogList() {
 
         {/* Sidebar */}
         <aside className="space-y-8">
+          {/* Search Widget */}
+          <BlogSearch onSearch={setSearchQuery} />
+
           {/* Audio Demo Widget */}
           <div className="bg-aura-card aura-border rounded-3xl p-1 overflow-hidden">
              <div className="p-6 pb-0">

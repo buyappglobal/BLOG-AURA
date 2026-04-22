@@ -1,6 +1,7 @@
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
 import ReactMarkdown from 'react-markdown';
+import rehypeRaw from 'rehype-raw';
 import { getPostBySlug } from '../lib/posts';
 import SEO from '../components/SEO';
 import CategoryBadge from '../components/CategoryBadge';
@@ -87,6 +88,7 @@ export default function PostPage() {
         className="markdown-body"
       >
         <ReactMarkdown
+          rehypePlugins={[rehypeRaw]}
           components={{
             p: ({ children, ...props }) => {
               const childrenArray = Array.isArray(children) ? children : [children];

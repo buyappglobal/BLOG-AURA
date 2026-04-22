@@ -68,11 +68,38 @@ export default function Layout() {
           <motion.div 
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="md:hidden bg-aura-bg border-b border-aura-border px-4 py-6 flex flex-col gap-4"
+            className="md:hidden bg-aura-bg border-b border-aura-border px-4 py-8 flex flex-col gap-8"
           >
-            <Link to="/" className="text-sm font-bold text-aura-text uppercase tracking-widest" onClick={() => setIsMenuOpen(false)}>Ecosistema</Link>
-            <a href="https://auradisplay.es" className="text-sm font-bold text-aura-text uppercase tracking-widest">Neuro-Venta</a>
-            <a href="https://partners.auradisplay.es" className="text-sm font-bold text-aura-text uppercase tracking-widest">Legal Tech</a>
+            {/* Search */}
+            <div className="relative">
+              <input 
+                type="text" 
+                placeholder="Buscar artículos..." 
+                className="w-full bg-aura-card border border-aura-border rounded-xl p-4 text-sm focus:outline-none focus:border-aura-accent"
+              />
+            </div>
+
+            {/* Nav */}
+            <div className="flex flex-col gap-4">
+              <Link to="/" className="text-sm font-bold text-aura-text uppercase tracking-widest" onClick={() => setIsMenuOpen(false)}>Inicio</Link>
+              <Link to="/soluciones-marketing-sensorial" className="text-sm font-bold text-aura-text uppercase tracking-widest" onClick={() => setIsMenuOpen(false)}>Soluciones Aura</Link>
+              <a href="https://auradisplay.es" className="text-sm font-bold text-aura-text uppercase tracking-widest">Neuro-Venta</a>
+              <a href="https://partners.auradisplay.es" className="text-sm font-bold text-aura-text uppercase tracking-widest">Legal Tech</a>
+            </div>
+
+            {/* Categories */}
+            <div className="flex flex-wrap gap-3">
+              {['Retail', 'Hostelería', 'Partners', 'Ecosistema'].map(cat => (
+                <Link 
+                  key={cat} 
+                  to="/blog" 
+                  className="px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest bg-aura-card text-aura-muted border border-aura-border"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {cat}
+                </Link>
+              ))}
+            </div>
           </motion.div>
         )}
       </header>
