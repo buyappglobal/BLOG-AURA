@@ -83,7 +83,7 @@ export default function BlogList() {
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                         referrerPolicy="no-referrer"
                         onError={(e) => {
-                          (e.target as HTMLImageElement).src = "https://solonet.es/wp-content/uploads/2026/03/Gemini_Generated_Image_6f93gy6f93gy6f93.png";
+                          (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&q=80&w=1200";
                         }}
                       />
                       <div className="absolute top-4 left-4">

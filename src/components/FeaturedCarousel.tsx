@@ -41,6 +41,9 @@ export default function FeaturedCarousel({ posts }: FeaturedCarouselProps) {
             alt={featuredPosts[currentIndex].title}
             className="w-full h-full object-cover opacity-60 scale-105"
             referrerPolicy="no-referrer"
+            onError={(e) => {
+              (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&q=80&w=1200";
+            }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-aura-bg via-aura-bg/20 to-transparent" />
           
