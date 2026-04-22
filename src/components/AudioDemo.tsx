@@ -3,44 +3,43 @@ import { Play, Pause, Volume2, SkipBack, SkipForward, Music } from 'lucide-react
 import { motion } from 'motion/react';
 
 interface AudioDemoProps {
-  initialPlaylist?: { url: string; title: string }[];
+  url: string;
+  title: string;
+  subtitle?: string;
 }
 
 export const AudioDemo: React.FC<AudioDemoProps> = ({ 
-  initialPlaylist = [
-    { url: "https://media.auradisplay.es/aura_flamenca/Sevilla%20de%20Seda.mp3", title: "Sevilla de Seda" },
-    { url: "https://media.auradisplay.es/aura_flamenca/Azahar%20Catedral.mp3", title: "Azahar Catedral" },
-    { url: "https://media.auradisplay.es/midnight/copa_de_medianoche.mp3", title: "Copa de Medianoche" }
-  ]
+  url,
+  title,
+  subtitle = "Branding Sonoro"
 }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(0.5);
   const audioRef = useRef<HTMLAudioElement | null>(null);
-
-  const currentTrack = initialPlaylist[currentIndex];
+  const instanceId = useRef(Math.random().toString(36).substring(7));
 
   useEffect(() => {
-    if (audioRef.current) {
-      audioRef.current.volume = volume;
-      audioRef.current.load();
-      if (isPlaying) audioRef.current.play();
-    }
-  }, [currentIndex]);
+    const handleOtherPlay = (e: CustomEvent) => {
+      if (e.detail.instanceId !== instanceId.current && isPlaying) {
+        audioRef.current?.pause();
+        setIsPlaying(false);
+      }
+    };
+    window.addEventListener('aura-audio-play', handleOtherPlay as EventListener);
+    return () => window.removeEventListener('aura-audio-play', handleOtherPlay as EventListener);
+  }, [isPlaying]);
 
   const togglePlay = () => {
     if (audioRef.current) {
-      if (isPlaying) audioRef.current.pause();
-      else audioRef.current.play();
-      setIsPlaying(!isPlaying);
+      if (isPlaying) {
+        audioRef.current.pause();
+        setIsPlaying(false);
+      } else {
+        audioRef.current.play();
+        setIsPlaying(true);
+        window.dispatchEvent(new CustomEvent('aura-audio-play', { detail: { instanceId: instanceId.current } }));
+      }
     }
-  };
-
-  const changeTrack = (direction: 'next' | 'prev') => {
-    let nextIndex = direction === 'next' ? currentIndex + 1 : currentIndex - 1;
-    if (nextIndex >= initialPlaylist.length) nextIndex = 0;
-    else if (nextIndex < 0) nextIndex = initialPlaylist.length - 1;
-    setCurrentIndex(nextIndex);
   };
 
   const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -56,15 +55,13 @@ export const AudioDemo: React.FC<AudioDemoProps> = ({
           {isPlaying ? <Pause size={20} fill="currentColor" /> : <Play size={20} fill="currentColor" className="ml-1" />}
         </button>
         <div className="flex-grow min-w-0">
-          <p className="text-[10px] uppercase tracking-widest text-aura-accent font-bold">Branding Sonoro</p>
-          <p className="text-sm font-medium text-white truncate">{currentTrack.title}</p>
+          <p className="text-[10px] uppercase tracking-widest text-aura-accent font-bold">{subtitle}</p>
+          <p className="text-sm font-medium text-white truncate">{title}</p>
         </div>
       </div>
       
       <div className="flex items-center gap-2 mb-4">
-        <button onClick={() => changeTrack('prev')} className="text-white/60 hover:text-white"><SkipBack size={16} /></button>
-        <button onClick={() => changeTrack('next')} className="text-white/60 hover:text-white"><SkipForward size={16} /></button>
-        <div className="flex-grow flex items-center gap-2 ml-2">
+        <div className="flex-grow flex items-center gap-2">
           <Volume2 size={12} className="text-white/40" />
           <input type="range" min="0" max="1" step="0.1" value={volume} onChange={handleVolumeChange} className="w-full h-1 bg-white/10 rounded-full appearance-none [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-2 [&::-webkit-slider-thumb]:h-2 [&::-webkit-slider-thumb]:bg-aura-accent [&::-webkit-slider-thumb]:rounded-full" />
         </div>
@@ -75,7 +72,7 @@ export const AudioDemo: React.FC<AudioDemoProps> = ({
         <p className="text-[9px] text-white/30 uppercase tracking-[0.1em] font-mono">© Aura Business Strategy</p>
       </div>
 
-      <audio ref={audioRef} src={currentTrack.url} onEnded={() => changeTrack('next')} />
+      <audio ref={audioRef} src={url} />
     </div>
   );
 };

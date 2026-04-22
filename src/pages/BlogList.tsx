@@ -5,15 +5,20 @@ import { getAllPosts } from '../lib/posts';
 import SEO from '../components/SEO';
 import CategoryBadge from '../components/CategoryBadge';
 import FeaturedCarousel from '../components/FeaturedCarousel';
+import { AuraLiveDemo } from '../components/AuraLiveDemo';
 import { AudioDemo } from '../components/AudioDemo';
 import { CompactContactWidget } from '../components/CompactContactWidget';
 import { BlogSearch } from '../components/BlogSearch';
-import { ArrowRight, Filter, ShieldCheck, Zap, Sparkles } from 'lucide-react';
+import { Sparkles, ArrowRight, Filter, ShieldCheck, Zap } from 'lucide-react';
 
 export default function BlogList() {
   const allPosts = getAllPosts();
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
+  
+  // URL to Aura Live Demo
+  const auraDemoUrl = "https://auradisplay.es";
+  const auraPosterUrl = "https://solonet.es/wp-content/uploads/2026/03/LOGO-AURA-BUSINESS-512-x-512-px.png";
 
   const categories = ['Retail', 'Hostelería', 'Partners', 'Ecosistema'];
 
@@ -135,12 +140,21 @@ export default function BlogList() {
           {/* Search Widget */}
           <BlogSearch onSearch={setSearchQuery} />
 
+          {/* Live Demo Widget */}
+          <div className="bg-aura-card aura-border rounded-3xl p-6">
+             <div className="flex items-center gap-2 mb-4">
+               <Sparkles className="w-4 h-4 text-aura-accent" />
+               <h3 className="text-[10px] font-bold uppercase tracking-widest text-aura-accent">Demo en Vivo</h3>
+             </div>
+             <AuraLiveDemo demoUrl={auraDemoUrl} posterUrl={auraPosterUrl} />
+          </div>
+
           {/* Audio Demo Widget */}
           <div className="bg-aura-card aura-border rounded-3xl p-1 overflow-hidden">
              <div className="p-6 pb-0">
                 <div className="flex items-center gap-2 mb-2">
                   <Sparkles className="w-3 h-3 text-aura-accent" />
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-aura-accent">Demo en Vivo</span>
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-aura-accent">Branding Sonoro</span>
                 </div>
                 <h3 className="text-sm font-bold uppercase tracking-widest mb-4">Siente la Atmósfera</h3>
              </div>

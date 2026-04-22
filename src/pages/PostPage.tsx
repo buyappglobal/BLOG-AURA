@@ -6,6 +6,7 @@ import { getPostBySlug } from '../lib/posts';
 import SEO from '../components/SEO';
 import CategoryBadge from '../components/CategoryBadge';
 import { AudioDemo } from '../components/AudioDemo';
+import { AuraLiveDemo } from '../components/AuraLiveDemo';
 import { ArrowLeft, Calendar, User, Share2 } from 'lucide-react';
 import { useEffect } from 'react';
 
@@ -104,6 +105,20 @@ export default function PostPage() {
                 const [_, url, title, subtitle] = audioData.split('|');
                 return <AudioDemo url={url} title={title} subtitle={subtitle} />;
               }
+
+              // Detect link that starts with "demo:" as an AuraLiveDemo trigger
+              const demoMatch = childrenArray.find(
+                (child: any) =>
+                  child?.props?.href?.startsWith('demo:') ||
+                  (typeof child === 'string' && child.startsWith('demo:'))
+              );
+
+              if (demoMatch) {
+                const demoData = typeof demoMatch === 'string' ? demoMatch : demoMatch.props.children;
+                const [_, demoUrl, posterUrl] = demoData.split('|');
+                return <AuraLiveDemo demoUrl={demoUrl} posterUrl={posterUrl} />;
+              }
+
               return <p {...props}>{children}</p>;
             }
           }}

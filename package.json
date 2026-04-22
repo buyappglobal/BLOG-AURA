@@ -5,9 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "tsx server.ts",
-    "build": "node scripts/generate-sitemap.js && vite build",
+    "build": "node scripts/generate-sitemap.cjs && vite build",
     "start": "node server.ts",
-    "sitemap": "node scripts/generate-sitemap.js",
+    "sitemap": "node scripts/generate-sitemap.cjs",
     "preview": "vite preview",
     "clean": "rm -rf dist",
     "lint": "tsc --noEmit"
