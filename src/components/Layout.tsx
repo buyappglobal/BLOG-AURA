@@ -4,6 +4,7 @@ import { Zap, Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import ThemeToggle from './ThemeToggle';
 import ContactCTA from './ContactCTA';
+import { AuraSalesAgent } from './AuraSalesAgent';
 
 export default function Layout() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -110,6 +111,7 @@ export default function Layout() {
           <ContactCTA />
         </div>
       </main>
+      <AuraSalesAgent />
 
       <footer className="bg-aura-bg border-t border-aura-border py-8 relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

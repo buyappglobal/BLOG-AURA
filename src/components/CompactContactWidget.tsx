@@ -3,11 +3,12 @@ import { MessageCircle, Send } from 'lucide-react';
 
 export const CompactContactWidget: React.FC = () => {
   const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
   const WHATSAPP_NUMBER = '34648512127';
 
   const handleWhatsApp = (e: React.FormEvent) => {
     e.preventDefault();
-    const message = encodeURIComponent(`Hola Aura Business, me llamo ${name} y me gustaría recibir más información.`);
+    const message = encodeURIComponent(`Hola Aura Business, me llamo ${name}. Mi teléfono es ${phone}. Me gustaría recibir más información.`);
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${message}`, '_blank');
   };
 
@@ -27,6 +28,14 @@ export const CompactContactWidget: React.FC = () => {
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder="Tu nombre..."
+          className="w-full bg-aura-card border border-aura-border rounded-xl px-4 py-3 text-xs focus:outline-none focus:border-aura-accent transition-colors"
+        />
+        <input 
+          type="tel" 
+          required
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+          placeholder="Tu número (Ej. +34 600...) "
           className="w-full bg-aura-card border border-aura-border rounded-xl px-4 py-3 text-xs focus:outline-none focus:border-aura-accent transition-colors"
         />
         <button 
