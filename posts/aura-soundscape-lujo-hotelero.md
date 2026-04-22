@@ -21,6 +21,8 @@ Soundscape no reproduce música; crea **paisajes sonoros envolventes**. Mediante
 ### Costa del Sol: Vanguardia y Exclusividad (Marbella/Estepona)
 En el epicentro del lujo contemporáneo, depender de listas de reproducción "quemadas" o radiofórmulas es un error de branding imperdonable. Aura Soundscape implementa una **Curación Algorítmica** que evoluciona con el pulso del día marbellí. Sonidos que respiran sofisticación tecnológica, diseñados para un público global que exige lo último en innovación sensorial.
 
+audio:https://media.auradisplay.es/midnight/cajo%CC%81n_seco_lavanda.mp3|Cajón Seco Lavanda|Aura Soundscape (Percusión)
+
 ### Turismo de Interior: Calma y Autenticidad (Huelva/Sevilla)
 Para los hoteles boutique y haciendas que son el orgullo de Huelva y Sevilla, el lujo es sinónimo de paz. Nuestra IA genera sonidos orgánicos que complementan la naturaleza circundante. No es música impuesta; es una extensión del entorno que refuerza la calma y la conexión con la tierra, elevando la estancia a una experiencia casi meditativa.
 

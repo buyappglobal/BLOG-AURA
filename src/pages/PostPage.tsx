@@ -4,6 +4,7 @@ import ReactMarkdown from 'react-markdown';
 import { getPostBySlug } from '../lib/posts';
 import SEO from '../components/SEO';
 import CategoryBadge from '../components/CategoryBadge';
+import { AudioDemo } from '../components/AudioDemo';
 import { ArrowLeft, Calendar, User, Share2 } from 'lucide-react';
 import { useEffect } from 'react';
 
@@ -73,7 +74,7 @@ export default function PostPage() {
             className="w-full h-full object-cover opacity-80"
             referrerPolicy="no-referrer"
             onError={(e) => {
-              (e.target as HTMLImageElement).src = "https://solonet.es/wp-content/uploads/2026/03/Gemini_Generated_Image_6f93gy6f93gy6f93.png";
+              (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&q=80&w=1200";
             }}
           />
         </motion.div>
@@ -85,7 +86,28 @@ export default function PostPage() {
         transition={{ delay: 0.4 }}
         className="markdown-body"
       >
-        <ReactMarkdown>{post.content}</ReactMarkdown>
+        <ReactMarkdown
+          components={{
+            p: ({ children, ...props }) => {
+              const childrenArray = Array.isArray(children) ? children : [children];
+              // Detect link that starts with "audio:" as an AudioDemo trigger
+              const audioMatch = childrenArray.find(
+                (child: any) => 
+                  child?.props?.href?.startsWith('audio:') || 
+                  (typeof child === 'string' && child.startsWith('audio:'))
+              );
+
+              if (audioMatch) {
+                const audioData = typeof audioMatch === 'string' ? audioMatch : audioMatch.props.children;
+                const [_, url, title, subtitle] = audioData.split('|');
+                return <AudioDemo url={url} title={title} subtitle={subtitle} />;
+              }
+              return <p {...props}>{children}</p>;
+            }
+          }}
+        >
+          {post.content}
+        </ReactMarkdown>
       </motion.div>
 
       <footer className="mt-24 pt-12 border-t border-aura-border">

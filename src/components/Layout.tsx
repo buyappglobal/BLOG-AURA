@@ -3,7 +3,6 @@ import { motion } from 'motion/react';
 import { Zap, Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import ThemeToggle from './ThemeToggle';
-import { SoundscapePlayer } from './SoundscapePlayer';
 import ContactCTA from './ContactCTA';
 
 export default function Layout() {
@@ -19,10 +18,13 @@ export default function Layout() {
           <div className="flex justify-between items-center h-20">
             <Link to="/" className="flex items-center gap-3 group">
               <img 
-                src="https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?auto=format&fit=crop&q=80&w=128&h=128" 
+                src="https://solonet.es/wp-content/uploads/2026/03/LOGO-AURA-BUSINESS-512-x-512-px-128-x-128-px.png" 
                 alt="Aura Business" 
-                className="w-10 h-10 object-contain rounded-lg group-hover:scale-110 transition-transform"
+                className="w-10 h-10 object-contain group-hover:scale-110 transition-transform"
                 referrerPolicy="no-referrer"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?auto=format&fit=crop&q=80&w=128&h=128";
+                }}
               />
               <span className="text-xl font-extrabold tracking-tighter text-aura-text flex items-center gap-2">
                 AURA <span className="text-aura-accent">BUSINESS</span>
@@ -101,7 +103,6 @@ export default function Layout() {
           </div>
         </div>
       </footer>
-      <SoundscapePlayer />
     </div>
   );
 }

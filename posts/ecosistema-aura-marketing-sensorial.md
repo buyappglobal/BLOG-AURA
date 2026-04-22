@@ -12,6 +12,8 @@ En un mercado saturado de estímulos genéricos, la diferenciación ya no es una
 
 No somos un proveedor de música o pantallas; somos los arquitectos de tu **Ecosistema Sensorial**.
 
+audio:https://media.auradisplay.es/aura_flamenca/Sevilla%20de%20Seda.mp3|Sevilla de Seda|Ecosistema Aura (Elegancia)
+
 ## ¿Qué compone el Universo Aura?
 
 Nuestra propuesta se basa en tres pilares estratégicos diseñados para cubrir cada necesidad del tejido empresarial, desde el comercio local hasta la gran administración pública.
@@ -27,6 +29,8 @@ Para aquellos espacios donde la música debe ser una extensión de la arquitectu
 
 *   **Punto fuerte:** Diseño de marca sonora (Audio Branding) de alto nivel.
 *   **Ideal para:** Hoteles de lujo, Spas, concesionarios premium y clínicas estéticas.
+
+audio:https://media.auradisplay.es/aura_flamenca/Azahar%20Catedral.mp3|Azahar Catedral|Aura Soundscape (Inmersión)
 
 ### 3. Aura Public: Ciudades Inteligentes y Conectadas
 La solución para el sector público y centros de gran afluencia. Integramos hilos musicales dinámicos con canales de información (tickers) para mejorar la comunicación ciudadana mientras se ahorran costes municipales.

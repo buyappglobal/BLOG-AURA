@@ -5,7 +5,9 @@ import { getAllPosts } from '../lib/posts';
 import SEO from '../components/SEO';
 import CategoryBadge from '../components/CategoryBadge';
 import FeaturedCarousel from '../components/FeaturedCarousel';
-import { ArrowRight, Filter } from 'lucide-react';
+import { AudioDemo } from '../components/AudioDemo';
+import { CompactContactWidget } from '../components/CompactContactWidget';
+import { ArrowRight, Filter, ShieldCheck, Zap, Sparkles } from 'lucide-react';
 
 export default function BlogList() {
   const allPosts = getAllPosts();
@@ -123,8 +125,26 @@ export default function BlogList() {
 
         {/* Sidebar */}
         <aside className="space-y-8">
+          {/* Audio Demo Widget */}
+          <div className="bg-aura-card aura-border rounded-3xl p-1 overflow-hidden">
+             <div className="p-6 pb-0">
+                <div className="flex items-center gap-2 mb-2">
+                  <Sparkles className="w-3 h-3 text-aura-accent" />
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-aura-accent">Demo en Vivo</span>
+                </div>
+                <h3 className="text-sm font-bold uppercase tracking-widest mb-4">Siente la Atmósfera</h3>
+             </div>
+             <div className="px-2 pb-2">
+                <AudioDemo 
+                  url="https://media.auradisplay.es/aura_flamenca/Sevilla%20de%20Seda.mp3" 
+                  title="Sevilla de Seda" 
+                  subtitle="Branding Sonoro"
+                />
+             </div>
+          </div>
+
           <div className="bg-aura-card aura-border rounded-2xl p-8">
-            <h3 className="text-xs font-bold uppercase tracking-widest text-aura-accent mb-6">Recientes</h3>
+            <h3 className="text-xs font-bold uppercase tracking-widest text-aura-accent mb-6">Artículos Recientes</h3>
             <div className="space-y-6">
               {allPosts.slice(0, 4).map((post) => (
                 <div key={post.slug} className="group">
@@ -137,13 +157,35 @@ export default function BlogList() {
             </div>
           </div>
 
+          {/* Legal Security Widget */}
+          <div className="bg-emerald-500/5 border border-emerald-500/20 rounded-3xl p-8 relative overflow-hidden group">
+            <ShieldCheck className="absolute -right-4 -bottom-4 w-32 h-32 text-emerald-500/10 -rotate-12 group-hover:scale-110 transition-transform duration-700" />
+            <div className="relative z-10">
+              <div className="w-10 h-10 rounded-xl bg-emerald-500/20 flex items-center justify-center mb-6">
+                <ShieldCheck className="w-6 h-6 text-emerald-500" />
+              </div>
+              <h3 className="text-xs font-bold uppercase tracking-widest text-emerald-500 mb-4">Blindaje Legal Tech</h3>
+              <p className="text-xs text-aura-muted leading-relaxed mb-6 italic">
+                "Certificamos la exención total de cánones SGAE/AGEDI mediante el uso de IA y derechos directos."
+              </p>
+              <Link to="/guia-legal-sgae" className="text-[10px] font-bold uppercase tracking-widest text-emerald-500 flex items-center gap-2 hover:translate-x-1 transition-transform">
+                Ver Certificación <ArrowRight className="w-3 h-3" />
+              </Link>
+            </div>
+          </div>
+
+          <CompactContactWidget />
+
           <div className="bg-aura-accent/5 border border-aura-accent/20 rounded-2xl p-8">
-            <h3 className="text-[10px] font-bold uppercase tracking-widest text-aura-accent mb-4">Aura Business Insights</h3>
+            <div className="flex items-center gap-3 mb-4">
+              <Zap className="w-4 h-4 text-aura-accent" />
+              <h3 className="text-[10px] font-bold uppercase tracking-widest text-aura-accent">Aura Business Insights</h3>
+            </div>
             <p className="text-xs text-aura-muted leading-relaxed mb-4">
               Optimizando el ecosistema sensorial con <strong>JSON-LD</strong> y esquemas avanzados.
             </p>
-            <div className="font-mono text-[9px] text-aura-muted/40 bg-aura-bg p-3 rounded border border-aura-border">
-              &lt;script type="application/ld+json"&gt;...
+            <div className="font-mono text-[9px] text-aura-muted/40 bg-aura-bg p-3 rounded border border-aura-border overflow-hidden">
+              <code className="block animate-pulse">&lt;script type="application/ld+json"&gt;...</code>
             </div>
           </div>
         </aside>

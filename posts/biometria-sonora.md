@@ -16,6 +16,8 @@ image: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format
 
 El cerebro humano tiene una capacidad innata para sincronizarse con los ritmos externos, un fenómeno conocido como *entrainment*. Cuando escuchamos música, nuestro ritmo cardíaco y nuestra velocidad de procesamiento cognitivo tienden a alinearse con los **BPM (Beats Per Minute)** de la melodía.
 
+audio:https://media.auradisplay.es/musicas_del_mundo/bolero_de_tu_aura.mp3|Bolero de tu Aura|Biometría: Modo Ticket Medio
+
 ![Ambiente Sonoro en Hostelería](https://images.unsplash.com/photo-1514525253361-bee8718a340b?auto=format&fit=crop&q=80&w=1000&h=500)
 
 ### La Estrategia de los Tiempos
@@ -38,6 +40,8 @@ Lo que diferencia a **Aura Business** de un simple hilo musical es nuestra integ
 ## El Impacto Económico
 
 Los datos son claros: una estrategia de biometría sonora bien ejecutada puede incrementar las ventas por impulso en un **12%** y mejorar la satisfacción del cliente en un **25%**. No se trata de poner música; se trata de componer la banda sonora de tu éxito financiero.
+
+audio:https://media.auradisplay.es/aura_flamenca/Atardecer%20en%20las%20playas%20de%20Huelva.mp3|Atardecer en Huelva|Biometría: Modo Relax
 
 ![Experiencia de Cliente Premium](https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=1000&h=500)
 

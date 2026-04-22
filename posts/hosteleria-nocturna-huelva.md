@@ -14,6 +14,8 @@ La noche de Huelva tiene un color especial, desde los locales del centro hasta l
 
 En **Aura Business**, hemos llegado a Huelva para cambiar las reglas del juego nocturno.
 
+audio:https://media.auradisplay.es/aura_flamenca/aura_mediterranean_pulse_(3).mp3|Mediterranean Pulse|Aura Nightlife (Energía)
+
 ## Adiós a las Listas Manuales, Hola al Flujo Infinito
 
 El mayor error de un bar de copas es dejar la música en manos de una lista de reproducción estática. La noche evoluciona: empieza tranquila y debe terminar en lo más alto. 
@@ -32,6 +34,8 @@ Con Aura, ese gasto desaparece. Nuestra música es **100% libre de gestión cole
 ## Una Experiencia Exclusiva
 
 Tus clientes no vienen solo a beber; vienen por la atmósfera. Al usar música generada por IA, tu local tendrá un **sonido único**. Nadie podrá decir "esa canción la he oído mil veces en la radio". Tu pub tendrá una identidad sonora propia, exclusiva y diseñada para maximizar el bienestar de tus clientes.
+
+audio:https://media.auradisplay.es/midnight/copa_de_medianoche.mp3|Copa de Medianoche|Aura Nightlife (Vibe)
 
 **Haz que la noche de Huelva suene a futuro.**
 
