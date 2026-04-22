@@ -1,167 +1,80 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Play, Pause, Volume2, VolumeX, Music, Loader2 } from 'lucide-react';
-import { motion, AnimatePresence } from 'motion/react';
+import { Play, Pause, Volume2, SkipBack, SkipForward, Music } from 'lucide-react';
+import { motion } from 'motion/react';
 
 interface AudioDemoProps {
-  url: string;
-  title: string;
-  subtitle?: string;
-  accentColor?: string;
+  initialPlaylist?: { url: string; title: string }[];
 }
 
 export const AudioDemo: React.FC<AudioDemoProps> = ({ 
-  url, 
-  title, 
-  subtitle = "Experiencia Sensorial Aura",
-  accentColor = "var(--color-aura-accent)"
+  initialPlaylist = [
+    { url: "https://media.auradisplay.es/aura_flamenca/Sevilla%20de%20Seda.mp3", title: "Sevilla de Seda" },
+    { url: "https://media.auradisplay.es/aura_flamenca/Azahar%20Catedral.mp3", title: "Azahar Catedral" },
+    { url: "https://media.auradisplay.es/midnight/copa_de_medianoche.mp3", title: "Copa de Medianoche" }
+  ]
 }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isMuted, setIsMuted] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [progress, setProgress] = useState(0);
+  const [volume, setVolume] = useState(0.8);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  const togglePlay = async () => {
+  const currentTrack = initialPlaylist[currentIndex];
+
+  useEffect(() => {
     if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.pause();
-        setIsPlaying(false);
-      } else {
-        try {
-          setIsLoading(true);
-          await audioRef.current.play();
-          setIsPlaying(true);
-        } catch (err) {
-          console.error("Audio playback error:", err);
-          setIsPlaying(false);
-        } finally {
-          setIsLoading(false);
-        }
-      }
+      audioRef.current.load();
+      if (isPlaying) audioRef.current.play();
+    }
+  }, [currentIndex]);
+
+  const togglePlay = () => {
+    if (audioRef.current) {
+      if (isPlaying) audioRef.current.pause();
+      else audioRef.current.play();
+      setIsPlaying(!isPlaying);
     }
   };
 
-  const toggleMute = () => {
-    if (audioRef.current) {
-      audioRef.current.muted = !isMuted;
-      setIsMuted(!isMuted);
-    }
+  const changeTrack = (direction: 'next' | 'prev') => {
+    let nextIndex = direction === 'next' ? currentIndex + 1 : currentIndex - 1;
+    if (nextIndex >= initialPlaylist.length) nextIndex = 0;
+    else if (nextIndex < 0) nextIndex = initialPlaylist.length - 1;
+    setCurrentIndex(nextIndex);
   };
 
-  const handleTimeUpdate = () => {
-    if (audioRef.current) {
-      const current = audioRef.current.currentTime;
-      const duration = audioRef.current.duration;
-      if (duration > 0) {
-        setProgress((current / duration) * 100);
-      }
-    }
+  const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newVolume = parseFloat(e.target.value);
+    setVolume(newVolume);
+    if (audioRef.current) audioRef.current.volume = newVolume;
   };
 
   return (
-    <div className="my-12 p-1 rounded-[32px] bg-gradient-to-br from-aura-border via-aura-card to-aura-border shadow-2xl relative overflow-hidden group">
-      <div className="bg-aura-card rounded-[31px] p-6 md:p-8 flex items-center gap-6 relative z-10 backdrop-blur-3xl">
-        <div className="relative shrink-0">
-          <button
-            onClick={togglePlay}
-            disabled={isLoading}
-            style={{ backgroundColor: isPlaying ? 'transparent' : accentColor }}
-            className={`w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center transition-all duration-500 shadow-xl group/btn ${
-              isPlaying ? 'border-2 border-aura-accent' : 'text-black'
-            }`}
-          >
-            {isLoading ? (
-              <Loader2 className="w-8 h-8 animate-spin text-aura-accent" />
-            ) : isPlaying ? (
-              <Pause className="w-8 h-8 text-aura-accent" fill="currentColor" />
-            ) : (
-              <Play className="w-8 h-8 md:ml-1" fill="currentColor" />
-            )}
-          </button>
-          
-          {/* Progress ring around the button */}
-          <svg className="absolute -inset-2 w-[calc(100%+16px)] h-[calc(100%+16px)] -rotate-90 pointer-events-none">
-            <circle
-              cx="50%"
-              cy="50%"
-              r="48%"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              className="text-aura-border/20"
-            />
-            <circle
-              cx="50%"
-              cy="50%"
-              r="48%"
-              fill="none"
-              stroke={accentColor}
-              strokeWidth="2"
-              strokeDasharray="100 100"
-              strokeDashoffset={100 - progress}
-              strokeLinecap="round"
-              className="transition-all duration-300 ease-linear shadow-[0_0_10px_rgba(var(--color-aura-accent),0.5)]"
-            />
-          </svg>
-        </div>
-
+    <div className="bg-black/40 border border-white/5 rounded-2xl p-4 backdrop-blur-md">
+      <div className="flex items-center gap-4 mb-4">
+        <button onClick={togglePlay} className="w-12 h-12 flex items-center justify-center rounded-full bg-aura-accent text-black hover:scale-105 transition-transform">
+          {isPlaying ? <Pause size={20} fill="currentColor" /> : <Play size={20} fill="currentColor" className="ml-1" />}
+        </button>
         <div className="flex-grow min-w-0">
-          <div className="flex items-center gap-2 mb-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-aura-accent animate-pulse" />
-            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-aura-muted">{subtitle}</span>
-          </div>
-          <h4 className="text-xl md:text-2xl font-bold tracking-tight text-white mb-2 truncate group-hover:text-aura-accent transition-colors">
-            {title}
-          </h4>
-          <div className="flex items-center gap-4">
-             <button 
-               onClick={toggleMute}
-               className="text-aura-muted hover:text-white transition-colors p-1"
-             >
-               {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
-             </button>
-             <div className="h-[2px] flex-grow bg-aura-border/30 rounded-full overflow-hidden">
-                <motion.div 
-                  initial={{ width: 0 }}
-                  animate={{ width: `${progress}%` }}
-                  className="h-full bg-aura-accent/40"
-                />
-             </div>
-          </div>
+          <p className="text-[10px] uppercase tracking-widest text-aura-accent font-bold">Branding Sonoro</p>
+          <p className="text-sm font-medium text-white truncate">{currentTrack.title}</p>
         </div>
-
-        <div className="hidden md:flex shrink-0 w-12 h-12 items-center justify-center rounded-xl bg-white/5 border border-white/10 opacity-20 group-hover:opacity-100 transition-opacity">
-          <Music className={`w-5 h-5 text-aura-accent ${isPlaying ? 'animate-bounce' : ''}`} />
-        </div>
-
-        <audio 
-          ref={audioRef}
-          src={url}
-          onTimeUpdate={handleTimeUpdate}
-          onEnded={() => {
-            setIsPlaying(false);
-            setProgress(0);
-          }}
-          onWaiting={() => setIsLoading(true)}
-          onPlaying={() => setIsLoading(false)}
-          onError={(e) => {
-            console.error("Audio Load Error:", e);
-            setIsLoading(false);
-          }}
-        />
       </div>
       
-      {/* Background glow animation */}
-      <AnimatePresence>
-        {isPlaying && (
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 0.15 }}
-            exit={{ opacity: 0 }}
-            className="absolute inset-0 bg-aura-accent blur-[40px] pointer-events-none"
-          />
-        )}
-      </AnimatePresence>
+      <div className="flex items-center gap-2 mb-4">
+        <button onClick={() => changeTrack('prev')} className="text-white/60 hover:text-white"><SkipBack size={16} /></button>
+        <button onClick={() => changeTrack('next')} className="text-white/60 hover:text-white"><SkipForward size={16} /></button>
+        <div className="flex-grow flex items-center gap-2 ml-2">
+          <Volume2 size={12} className="text-white/40" />
+          <input type="range" min="0" max="1" step="0.1" value={volume} onChange={handleVolumeChange} className="w-full h-1 bg-white/10 rounded-full appearance-none [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-2 [&::-webkit-slider-thumb]:h-2 [&::-webkit-slider-thumb]:bg-aura-accent [&::-webkit-slider-thumb]:rounded-full" />
+        </div>
+      </div>
+
+      <div className="flex items-center gap-2 mt-4 pt-4 border-t border-white/5">
+        <span className="w-1.5 h-1.5 rounded-full bg-aura-accent/50" />
+        <p className="text-[9px] text-white/30 uppercase tracking-[0.1em] font-mono">© Aura Business Strategy</p>
+      </div>
+
+      <audio ref={audioRef} src={currentTrack.url} onEnded={() => changeTrack('next')} />
     </div>
   );
 };
