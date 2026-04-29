@@ -167,6 +167,24 @@ export default function BlogList() {
              </div>
           </div>
 
+          {/* Audio Demo Widget */}
+          <div className="bg-aura-card aura-border rounded-3xl p-1 overflow-hidden">
+             <div className="p-6 pb-0">
+                <div className="flex items-center gap-2 mb-2">
+                  <Sparkles className="w-3 h-3 text-aura-accent" />
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-aura-accent">Branding Sonoro</span>
+                </div>
+                <h3 className="text-sm font-bold uppercase tracking-widest mb-4">Siente la Atmósfera</h3>
+             </div>
+             <div className="px-2 pb-2">
+                <AudioDemo 
+                  url="https://media.auradisplay.es/aura_flamenca/Sevilla%20de%20Seda.mp3" 
+                  title="Sevilla de Seda" 
+                  subtitle="Branding Sonoro"
+                />
+             </div>
+          </div>
+
           <div className="bg-aura-card aura-border rounded-2xl p-8">
             <h3 className="text-xs font-bold uppercase tracking-widest text-aura-accent mb-6">Artículos Recientes</h3>
             <div className="space-y-6">
