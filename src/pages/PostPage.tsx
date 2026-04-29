@@ -93,30 +93,41 @@ export default function PostPage() {
           components={{
             p: ({ children, ...props }) => {
               const childrenArray = Array.isArray(children) ? children : [children];
-              // Detect link that starts with "audio:" as an AudioDemo trigger
-              const audioMatch = childrenArray.find(
-                (child: any) => 
-                  child?.props?.href?.startsWith('audio:') || 
-                  (typeof child === 'string' && child.startsWith('audio:'))
-              );
+              
+              // Helper to get text content from child nodes
+              const getTextContent = (child: any): string => {
+                if (typeof child === 'string') return child;
+                if (child?.props?.href && typeof child.props.href === 'string') return child.props.href;
+                if (child?.props?.children && typeof child.props.children === 'string') return child.props.children;
+                return '';
+              };
 
-              if (audioMatch) {
-                const audioData = typeof audioMatch === 'string' ? audioMatch : audioMatch.props.children;
-                const [_, url, title, subtitle] = audioData.split('|');
-                return <AudioDemo url={url} title={title} subtitle={subtitle} />;
+              // Detect link that starts with "audio:" as an AudioDemo trigger
+              const audioChild = childrenArray.find((child: any) => {
+                const text = getTextContent(child);
+                return text.startsWith('audio:');
+              });
+
+              if (audioChild) {
+                const audioData = getTextContent(audioChild);
+                const parts = audioData.replace('audio:', '').split('|');
+                if (parts.length >= 2) {
+                  return <AudioDemo url={parts[0]} title={parts[1]} subtitle={parts[2]} />;
+                }
               }
 
               // Detect link that starts with "demo:" as an AuraLiveDemo trigger
-              const demoMatch = childrenArray.find(
-                (child: any) =>
-                  child?.props?.href?.startsWith('demo:') ||
-                  (typeof child === 'string' && child.startsWith('demo:'))
-              );
+              const demoChild = childrenArray.find((child: any) => {
+                const text = getTextContent(child);
+                return text.startsWith('demo:');
+              });
 
-              if (demoMatch) {
-                const demoData = typeof demoMatch === 'string' ? demoMatch : demoMatch.props.children;
-                const [_, demoUrl, posterUrl] = demoData.split('|');
-                return <AuraLiveDemo demoUrl={demoUrl} posterUrl={posterUrl} />;
+              if (demoChild) {
+                const demoData = getTextContent(demoChild);
+                const parts = demoData.replace('demo:', '').split('|');
+                if (parts.length >= 2) {
+                  return <AuraLiveDemo demoUrl={parts[0]} posterUrl={parts[1]} />;
+                }
               }
 
               return <p {...props}>{children}</p>;
