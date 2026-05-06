@@ -30,10 +30,12 @@ Los datos que analizamos constantemente en el Ecosistema Aura son claros: cuando
 
 ## Próximamente en el Ecosistema Aura
 
-Don Paco, este desarrollo sigue los principios que han hecho que Aura Business sea su aliado de confianza: automatización, facilidad de uso y compromiso con la rentabilidad de su negocio. Aura 360° convierte la complejidad del marketing sensorial avanzado en un sistema sencillo y automatizado, listo para su día a día.
+Don Paco, este desarrollo sigue los principios que han hecho que Aura Business sea su aliado de confianza: automatización, facilidad de uso y compromiso con la rentabilidad de su negocio. Aura 360° convierte el marketing sensorial avanzado en un sistema sencillo y automatizado, listo para su día a día.
 
 En nuestras pruebas internas, hemos observado que los entornos que logran orquestar esta inmersión sensorial muestran una mayor permanencia del cliente, lo que se traduce en un aumento directo en el ticket medio.
 
 Porque en el punto de venta actual, no gana quien más muestra… sino quien más se recuerda.
 
-Estamos seleccionando un número limitado de clientes actuales para probar esta capacidad antes de su lanzamiento general. Si le interesa que su local sea uno de los primeros en activarlo y ser un referente tecnológico, **responda a este mensaje** y le incluiremos en nuestra lista prioritaria.
+En otras palabras: estamos trabajando para que cada promoción que aparece en sus pantallas genere más atención, más tiempo de permanencia y más ventas.
+
+Estamos seleccionando un número limitado de clientes actuales para probar esta capacidad antes de su lanzamiento general. Si le interesa formar parte de esta fase inicial, puede responder a este mensaje y le incluiremos en nuestra lista prioritaria.
