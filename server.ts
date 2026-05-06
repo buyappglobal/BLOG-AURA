@@ -47,6 +47,9 @@ async function startServer() {
       const tickerText = isSmartCityPost
         ? 'AVISO: Inscripciones abiertas para los talleres de verano'
         : '';
+        
+      // Corrected: Using a hardcoded font URL might fail if it's not reachable. 
+      // But keeping it to match the existing server.ts logic.
       const fontResponse = await fetch("https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hjp-Ek-_EeA.woff");
       const fontData = await fontResponse.arrayBuffer();
 
@@ -69,7 +72,7 @@ async function startServer() {
               position: 'relative',
             },
             children: [
-              // Logo placeholder / Text
+              // Logo
               {
                 type: 'div',
                 props: {
@@ -82,28 +85,8 @@ async function startServer() {
                     gap: '12px',
                   },
                   children: [
-                    {
-                      type: 'div',
-                      props: {
-                        style: {
-                          width: '40px',
-                          height: '40px',
-                          backgroundColor: accentColor,
-                          borderRadius: '8px',
-                        }
-                      }
-                    },
-                    {
-                      type: 'span',
-                      props: {
-                        style: {
-                          fontSize: '24px',
-                          fontWeight: 'bold',
-                          letterSpacing: '-0.05em',
-                        },
-                        children: 'AURA BUSINESS'
-                      }
-                    }
+                    { type: 'div', props: { style: { width: '40px', height: '40px', backgroundColor: accentColor, borderRadius: '8px' } } },
+                    { type: 'span', props: { style: { fontSize: '24px', fontWeight: 'bold', letterSpacing: '-0.05em' }, children: 'AURA BUSINESS' } }
                   ]
                 }
               },
@@ -120,19 +103,7 @@ async function startServer() {
                     marginBottom: '40px',
                   },
                   children: [
-                    {
-                      type: 'span',
-                      props: {
-                        style: {
-                          fontSize: '18px',
-                          fontWeight: 'bold',
-                          color: accentColor,
-                          textTransform: 'uppercase',
-                          letterSpacing: '0.1em',
-                        },
-                        children: category || 'Ecosistema'
-                      }
-                    }
+                    { type: 'span', props: { style: { fontSize: '18px', fontWeight: 'bold', color: accentColor, textTransform: 'uppercase', letterSpacing: '0.1em' }, children: category || 'Ecosistema' } }
                   ]
                 }
               },
@@ -151,7 +122,7 @@ async function startServer() {
                   children: title || 'Aura Business Insights'
                 }
               },
-              // Footer / Value Prop
+              // Footer
               {
                 type: 'div',
                 props: {
@@ -172,59 +143,19 @@ async function startServer() {
                     ...(i < arr.length - 1 ? [{ type: 'div', props: { style: { width: '4px', height: '4px', backgroundColor: '#333', borderRadius: '50%' } } }] : [])
                   ]).flat()
                 }
-              },
-              // Ticker for Smart City
-              ...(tickerText ? [{
-                type: 'div',
-                props: {
-                  style: {
-                    position: 'absolute',
-                    bottom: '0',
-                    left: '0',
-                    right: '0',
-                    height: '60px',
-                    backgroundColor: accentColor,
-                    display: 'flex',
-                    alignItems: 'center',
-                    padding: '0 80px',
-                  },
-                  children: [
-                    {
-                      type: 'span',
-                      props: {
-                        style: {
-                          color: 'black',
-                          fontSize: '20px',
-                          fontWeight: 'bold',
-                          textTransform: 'uppercase',
-                          letterSpacing: '0.05em',
-                        },
-                        children: tickerText
-                      }
-                    }
-                  ]
-                }
-              }] : [])
+              }
             ]
           }
         } as any,
         {
           width: 1200,
           height: 630,
-          fonts: [
-            {
-              name: 'Inter',
-              data: fontData,
-              weight: 700,
-              style: 'normal',
-            },
-          ],
+          fonts: [{ name: 'Inter', data: fontData, weight: 700, style: 'normal' }],
         }
       );
 
       const resvg = new Resvg(svg);
-      const pngData = resvg.render();
-      const pngBuffer = pngData.asPng();
+      const pngBuffer = resvg.render().asPng();
 
       res.setHeader("Content-Type", "image/png");
       res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
@@ -232,6 +163,29 @@ async function startServer() {
     } catch (error) {
       console.error("OG Generation Error:", error);
       res.status(500).send("Error generating image");
+    }
+  });
+
+  // API Route to fetch all blog posts content
+  app.get("/api/posts-context", async (req, res) => {
+    try {
+      const postsDir = path.resolve(process.cwd(), 'posts');
+      const files = fs.readdirSync(postsDir).filter(file => file.endsWith('.md'));
+      
+      const postsContent = files.map(file => {
+        const filePath = path.join(postsDir, file);
+        const content = fs.readFileSync(filePath, 'utf-8');
+        const { data, content: body } = matter(content);
+        return `---
+Title: ${data.title}
+Category: ${data.category}
+---\n${body}`;
+      }).join('\n\n---POST END---\n\n');
+      
+      res.json({ context: postsContent });
+    } catch (error) {
+      console.error("Error reading posts context:", error);
+      res.status(500).send("Error reading posts");
     }
   });
 

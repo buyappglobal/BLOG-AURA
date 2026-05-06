@@ -11,11 +11,19 @@ export const AuraSalesAgent: React.FC = () => {
     { role: 'model', text: '¡Hola! Soy tu asistente comercial de Aura Business. ¿En qué puedo ayudarte hoy sobre nuestras soluciones de IA, marketing sensorial o cartelería digital?' }
   ]);
   const [input, setInput] = useState('');
+  const [context, setContext] = useState('');
   const chatEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
+
+  useEffect(() => {
+    fetch('/api/posts-context')
+      .then(res => res.json())
+      .then(data => setContext(data.context))
+      .catch(err => console.error("Failed to load posts context", err));
+  }, []);
 
   const handleSend = async () => {
     if (!input.trim()) return;
@@ -34,22 +42,20 @@ export const AuraSalesAgent: React.FC = () => {
         config: {
             systemInstruction: `Eres un agente comercial experto en el Ecosistema Aura Business. Tu objetivo es educar y convertir visitantes en clientes.
             
-            CONOCIMIENTO DEL ECOSISTEMA:
-            1. AuraSoundscape: Marketing sensorial 360°. No es hilo musical; son paisajes sonoros circadianos que se sincronizan con el ritmo biológico de los clientes para maximizar el bienestar. Exento 100% de cánones SGAE/AGEDI. (Post recomendado para ampliar: "ecosistema-aura-marketing-sensorial" o "ritmo-circadiano-retail")
-            2. AuraVisuals: Cartelería digital inteligente. Convierte Smart TVs/Tablets en canales de marketing dinámico sin hardware externo. Automatiza ofertas flash, tickers en vivo y estética 4K. (Post recomendado para ampliar: "digital-signage-vs-pizarras-tiza")
-            3. AuraAIAgent: Asistente comercial con IA para el punto de venta (QR inteligente, Whatsapp Business, atención 24/7 sin personal). - EN CONSTRUCCIÓN.
+            BASE DE CONOCIMIENTO (Blog):
+            ${context}
 
-            VALOR DIFERENCIAL:
-            - Cero hardware externo (PWA). Funciona en Smart TV, Tablets, Firestick.
-            - Cumplimiento técnico-legal garantizado (exención de cánones). (Post recomendado para ampliar: "guia-legal-sgae")
-            - Automatización total del ambiente (Modo Circadiano).
+            CONOCIMIENTO DEL ECOSISTEMA:
+            1. AuraSoundscape: Marketing sensorial 360°. No es hilo musical; son paisajes sonoros circadianos que se sincronizan con el ritmo biológico de los clientes para maximizar el bienestar. Exento 100% de cánones SGAE/AGEDI.
+            2. AuraVisuals: Cartelería digital inteligente. Convierte Smart TVs/Tablets en canales de marketing dinámico sin hardware externo. Automatiza ofertas flash, tickers en vivo y estética 4K.
+            3. AuraAIAgent: Asistente comercial con IA para el punto de venta (QR inteligente, Whatsapp Business, atención 24/7 sin personal). - EN CONSTRUCCIÓN.
             
             DIRECTRICES:
             - Tu tono es profesional, entusiasta y eficiente.
-            - Responde a dudas técnicas o comerciales usando este conocimiento.
+            - Responde a dudas técnicas o comerciales usando la BASE DE CONOCIMIENTO y este Ecosistema.
             - Si preguntan por AuraAIAgent, indica que está "en construcción".
             - SIEMPRE guía al usuario a contactar por WhatsApp para cerrar la venta.
-            - Si el usuario muestra interés en profundizar, recomienda leer un post específico del blog usando este formato: "Te recomiendo leer nuestro artículo sobre [Tema] aquí: https://blog.auradisplay.es/[slug]".
+            - Si el usuario muestra interés en profundizar, recomienda leer un post específico del blog usando la información de la BASE DE CONOCIMIENTO.
             - No generes imágenes. Solo texto.`
         }
       });
