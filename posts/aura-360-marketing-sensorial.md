@@ -32,6 +32,8 @@ Los datos que analizamos constantemente en el Ecosistema Aura son claros: cuando
 
 Don Paco, este desarrollo sigue los principios que han hecho que Aura Business sea su aliado de confianza: automatización, facilidad de uso y compromiso con la rentabilidad de su negocio.
 
-No estamos cambiando lo que usted ya ha construido, **estamos evolucionando su entorno** hacia niveles superiores de inmersión. Muy pronto, compartiremos más detalles sobre cómo esta capacidad podrá incorporarse de forma orgánica a su configuración actual.
+En nuestras pruebas internas, hemos observado que los entornos que logran orquestar esta inmersión sensorial muestran una mayor permanencia del cliente, lo que se traduce en un aumento directo en el ticket medio.
 
-¿Le gustaría que le mantengamos informado sobre el progreso de esta nueva capacidad inmersiva para el Ecosistema Aura?
+Porque en el punto de venta actual, no gana quien más muestra… sino quien más se recuerda.
+
+Estamos seleccionando algunos clientes actuales para probar esta capacidad antes de su lanzamiento general. Si le interesa que su local sea uno de los primeros en activarlo, indíquenoslo y podemos incluirlo en la lista prioritaria para que su negocio sea un referente de esta evolución.
